@@ -1,4 +1,5 @@
 /* How many customers joined the company during the last quarter? How many customers joined? */
+-- 1051 customer joined last quarter 
 SELECT 
 	-- Age, Tenure_in_Months
 	COUNT(Customer_ID) AS NewCustomerThisQuarter
