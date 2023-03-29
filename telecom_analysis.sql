@@ -1,3 +1,28 @@
+/* Average tenure in months */
+-- 32.4 months 
+SELECT 
+    AVG(Tenure_in_Months)
+FROM
+    telecom_customer_churn;
+
+/* Average monthyl revenue */
+-- cutomer that churn have a higher Avg. Monthly revenue
+SELECT 
+    Customer_Status, AVG(Monthly_Charge) AS AvgMonthlyRevenue
+FROM
+    telecom_customer_churn
+GROUP BY Customer_Status
+ORDER BY 2 DESC;  
+
+/* Contract type by customer status */
+-- Compared to the customers that "stayed", "Joined" and "Churned" have a higher number of customer on month-to-month
+-- Contract is key get more customers on 1 or 2 years contract by providing incentives  
+SELECT 
+    COUNT(DISTINCT Customer_ID), Customer_Status, Contract
+FROM
+    telecom_customer_churn
+GROUP BY 2,3;
+ 
 /* How many customers joined the company during the last quarter? How many customers joined? */
 -- 1051 customer joined last quarter 
 SELECT 
@@ -49,7 +74,8 @@ GROUP BY 2
 ORDER BY 1 DESC;
 
 /* Is the company losing high value customers? If so, how can they retain them? */
-
+-- Yes. Our most valuable customer have the highest average monthly charge as well as the highest churn.
+-- We can look at offering incentives to drive more people to sign 1 to 2 year contracts since most customers have month to month  
 SELECT *
 FROM telecom_customer_churn;
 
