@@ -75,7 +75,20 @@ ORDER BY 1 DESC;
 
 /* Is the company losing high value customers? If so, how can they retain them? */
 -- Yes. Our most valuable customer have the highest average monthly charge as well as the highest churn.
--- We can look at offering incentives to drive more people to sign 1 to 2 year contracts since most customers have month to month  
+-- We can look at offering incentives to drive more people to sign 1 to 2 year contracts since most customers have month to month 
+
+/* What zip code our customer churning in? */
+-- 92126, 92117, 92122, 92109, 92028 these zipcode hold a large number of customer that are churning.
+-- we can focus our marketing effort in this area 
+SELECT 
+    Customer_Status, tc.Zip_Code, SUM(population)
+FROM
+    telecom_customer_churn tc
+        LEFT JOIN
+    telecom_zipcode_population tp ON tc.Zip_Code = tp.Zip_Code
+GROUP BY 1 , 2
+ORDER BY 3 DESC;
+
 SELECT *
 FROM telecom_customer_churn;
 
